@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteWise - Secure Online E-Voting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
+    <nav class="bg-[#0f172a] text-white sticky top-0 z-50 shadow-xl">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center overflow-hidden shadow-inner">
+                    <img src="images/images.png" class="w-full h-full object-cover" />
+                </div>
+                <span class="text-4xl font-bold tracking-tighter">Vote<span class="text-blue-400">Wise</span></span>
+            </div>
+            <div class="flex gap-8 text-lg font-medium">
+                <a href="login.html" class="hover:text-blue-400 transition">Login</a>
+                <a href="register.html" class="hover:text-blue-400 transition">Register</a>
+                <a href="results.html" class="hover:text-blue-400 transition">Live Results</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - ONLY IMAGE CHANGED TO YOUR INDIAN FLAG (very faint) -->
+    <section class="hero-bg text-white py-40 relative">
+        <div class="hero-content max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <h1 class="text-6xl md:text-7xl color-black font-bold leading-none tracking-tighter">
+                    Secure Online<br>E-Voting System
+                </h1>
+                <p class="text-3xl text-blue-400">Your Vote. India’s Future — Now Online 🇮🇳</p>
+
+                <div class="flex gap-6">
+                    <a href="login.html"
+                        class="px-10 py-5 bg-white text-[#0f172a] rounded-3xl font-bold text-xl flex items-center gap-3 shadow-xl hover:scale-105 transition">Login
+                        to Vote</a>
+                    <a href="register.html"
+                        class="px-10 py-5 border-2 border-white/80 rounded-3xl font-bold text-xl flex items-center gap-3 hover:bg-white hover:text-[#0f172a] transition">Register
+                        Now</a>
+                </div>
+
+                <!-- Trust badges -->
+                <div class="flex items-center gap-8 pt-6">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-3xl"></i> <span
+                            class="font-medium">100% Secure</span></div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-users text-3xl"></i> <span
+                            class="font-medium">New for College Students</span></div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-users-line text-3xl"></i> <span
+                            class="font-medium">For All Indian Voters</span></div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE IMAGE (kept your original voting.png - you can change it later if you want) -->
+            <div class="relative flex justify-center">
+                <img src="images/icon 1.png" class="w-full max-w-4xl rounded-3xl shadow-lg" alt="VoteWise Ballot Box">
+
+                <!-- Floating images for decoration -->
+                <!-- <img src="https://picsum.photos/id/201/180/180" class="absolute -top-8 -left-8 w-40 rounded-2xl shadow-2xl floating" alt="Shield">
+            <img src="https://picsum.photos/id/160/180/180" class="absolute -bottom-6 right-12 w-36 rounded-2xl shadow-2xl floating" style="animation-delay: 1s;" alt="Student">
+            <img src="https://picsum.photos/id/318/160/160" class="absolute top-12 -right-10 w-32 rounded-2xl shadow-2xl floating" style="animation-delay: 2s;" alt="Mobile"> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY VOTING IS IMPORTANT -->
+    <section class="py-24 bg-white relative overflow-hidden hidden-anim">
+        <div
+            class="absolute -right-20 top-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob">
+        </div>
+        <div
+            class="absolute -left-20 bottom-20 w-72 h-72 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Image side -->
+                <div class="relative group rounded-3xl overflow-hidden shadow-2xl">
+                    <div
+                        class="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition duration-500 z-10">
+                    </div>
+                    <img src="images/votewise_hero.png" alt="VoteWise - Importance of Voting"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out">
+                    <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0f172a] to-transparent pt-20 pb-8 px-8 z-20">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md text-white rounded-full font-semibold text-xs mb-3">
+                            VoteWise</div>
+                        <h3 class="text-white text-3xl font-bold">Your Voice Matters</h3>
+                    </div>
+                </div>
+
+                <!-- Text side -->
+                <div class="space-y-8">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full font-semibold text-sm">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Empowering Democracy</span>
+                    </div>
+                    <h2 class="text-5xl font-extrabold text-[#0f172a] leading-tight tracking-tight">
+                        Why We Vote & <br>Why It Is Important
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Voting is not just a constitutional right; it is our primary instrument to shape the future of
+                        our nation. By voting, we elect leaders who reflect our values, solve our community's
+                        challenges, and protect our freedoms.
+                    </p>
+
+                    <ul class="space-y-6 mt-8">
+                        <li
+                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition border border-transparent hover:border-gray-100">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex justify-center items-center flex-shrink-0 shadow-lg shadow-blue-500/30">
+                                <i class="fa-solid fa-scale-balanced text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-[#0f172a]">Democratic Equality</h4>
+                                <p class="text-gray-600 mt-1">Every vote carries the same weight. It guarantees that the
+                                    voice of every citizen is heard, regardless of background.</p>
+                            </div>
+                        </li>
+                        <li
+                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition border border-transparent hover:border-gray-100">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-green-500 text-white flex justify-center items-center flex-shrink-0 shadow-lg shadow-green-500/30">
+                                <i class="fa-solid fa-hands-holding-child text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-[#0f172a]">Future Generations</h4>
+                                <p class="text-gray-600 mt-1">The decisions made today shape the economy, environment,
+                                    and opportunities for the future of India.</p>
+                            </div>
+                        </li>
+                        <li
+                            class="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition border border-transparent hover:border-gray-100">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-orange-500 text-white flex justify-center items-center flex-shrink-0 shadow-lg shadow-orange-500/30">
+                                <i class="fa-solid fa-bullhorn text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-[#0f172a]">Accountability</h4>
+                                <p class="text-gray-600 mt-1">Voting forces leaders to be accountable. If they do not
+                                    perform, voting is the tool to demand change.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POWERFUL FEATURES -->
+    <section class="py-24 bg-[#0f172a] relative border-t border-gray-800 hidden-anim">
+        <!-- Abstract glowing background shape -->
+        <div class="absolute top-0 inset-x-0 flex justify-center pointer-events-none opacity-50">
+            <div
+                class="w-[800px] h-[300px] bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-[120px] -translate-y-1/2">
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <h2 class="text-5xl font-extrabold text-white tracking-tight mb-6">Powerful Features</h2>
+                <p class="text-xl text-gray-400">Experience a modern voting system engineered for maximum security,
+                    speed, and reliability.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-gray-800 transition duration-300 overflow-hidden text-center p-8 shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg shadow-blue-500/30 flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                        <i class="fa-solid fa-shield-halved text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">End-to-End Secure</h3>
+                    <p class="text-gray-400">Military-grade encryption verifying your Voter ID. Untamperable and 100%
+                        confidential.</p>
+                </div>
+
+                <div
+                    class="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-gray-800 transition duration-300 overflow-hidden text-center p-8 shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-lg shadow-indigo-500/30 flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:-rotate-3 transition duration-300">
+                        <i class="fa-solid fa-laptop text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Vote from Hostel</h3>
+                    <p class="text-gray-400">Designed for college students. Empowering you to cast your vote wherever
+                        you study.</p>
+                </div>
+
+                <div
+                    class="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-gray-800 transition duration-300 overflow-hidden text-center p-8 shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg shadow-green-500/30 flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                        <i class="fa-solid fa-chart-line text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Live Results</h3>
+                    <p class="text-gray-400">Fairness guaranteed. Watch real-time multi-level result visualizations
+                        instantly.</p>
+                </div>
+
+                <div
+                    class="group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-gray-800 transition duration-300 overflow-hidden text-center p-8 shadow-2xl hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mx-auto bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl shadow-lg shadow-orange-500/30 flex items-center justify-center mb-6 transform group-hover:scale-110 group-hover:-rotate-3 transition duration-300">
+                        <i class="fa-solid fa-mobile-screen text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Mobile Friendly</h3>
+                    <p class="text-gray-400">Fully responsive dynamic interfaces that work flawlessly on all your
+                        devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-24 bg-gray-50 relative hidden-anim">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm mb-4">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                    <span>Simple Steps</span>
+                </div>
+                <h2 class="text-5xl font-extrabold text-[#0f172a] tracking-tight">How It Works</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative items-start">
+                <!-- Connecting Line for desktop -->
+                <div
+                    class="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200 -z-0">
+                </div>
+
+                <div class="text-center relative z-10 group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white border-4 border-blue-600 text-blue-600 shadow-xl rounded-full flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                        1
+                    </div>
+                    <h4 class="font-bold text-2xl text-[#0f172a] mb-3">Register</h4>
+                    <p class="text-gray-600 font-medium leading-relaxed px-4">Enter your details & Voter ID to secure
+                        your identity.</p>
+                </div>
+
+                <div class="text-center relative z-10 group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white border-4 border-blue-600 text-blue-600 shadow-xl rounded-full flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                        2
+                    </div>
+                    <h4 class="font-bold text-2xl text-[#0f172a] mb-3">Login Securely</h4>
+                    <p class="text-gray-600 font-medium leading-relaxed px-4">Use your Voter ID & Password to access
+                        your dashboard.</p>
+                </div>
+
+                <div class="text-center relative z-10 group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white border-4 border-blue-600 text-blue-600 shadow-xl rounded-full flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                        3
+                    </div>
+                    <h4 class="font-bold text-2xl text-[#0f172a] mb-3">Cast Your Vote</h4>
+                    <p class="text-gray-600 font-medium leading-relaxed px-4">Choose your candidate and submit your
+                        confidential vote.</p>
+                </div>
+
+                <div class="text-center relative z-10 group">
+                    <div
+                        class="w-20 h-20 mx-auto bg-white border-4 border-blue-600 text-blue-600 shadow-xl rounded-full flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition duration-300">
+                        4
+                    </div>
+                    <h4 class="font-bold text-2xl text-[#0f172a] mb-3">See Live Results</h4>
+                    <p class="text-gray-600 font-medium leading-relaxed px-4">The moment polls close, the winner is
+                        declared instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 bg-white relative hidden-anim border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full font-semibold text-sm mb-4">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Got Questions?</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-[#0f172a] tracking-tight">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition bg-gray-50/50">
+                    <h3 class="text-xl font-bold text-gray-900 flex justify-between items-center cursor-pointer group">
+                        Is online voting completely secure? <i class="fa-solid fa-plus text-blue-600 transition-transform group-hover:rotate-90"></i>
+                    </h3>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Absolutely. VoteWise uses military-grade encryption to secure your data and identity. Once your vote is cast, it is anonymized and securely stored in the local database, guaranteeing your privacy while ensuring it's counted accurately.</p>
+                </div>
+                
+                <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition bg-gray-50/50">
+                    <h3 class="text-xl font-bold text-gray-900 flex justify-between items-center cursor-pointer group">
+                        Can I change my vote after submitting it? <i class="fa-solid fa-plus text-blue-600 transition-transform group-hover:rotate-90"></i>
+                    </h3>
+                    <p class="mt-4 text-gray-600 leading-relaxed">No. To maintain the integrity of the election, all votes are finalized instantly. Please review your choice carefully before confirming.</p>
+                </div>
+                
+                <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition bg-gray-50/50">
+                    <h3 class="text-xl font-bold text-gray-900 flex justify-between items-center cursor-pointer group">
+                        Who is eligible to vote on VoteWise? <i class="fa-solid fa-plus text-blue-600 transition-transform group-hover:rotate-90"></i>
+                    </h3>
+                    <p class="mt-4 text-gray-600 leading-relaxed">Any registered student with a valid Voter ID provided by the administration can cast a vote. College students primarily use VoteWise to participate remotely in council elections from their hostels or homes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI CHATBOT -->
+    <div id="ai-chat-bubble"
+        class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer shadow-2xl hover:bg-blue-700 hover:scale-110 transition z-50">
+        <i class="fa-solid fa-robot text-3xl text-white"></i>
+    </div>
+
+    <div id="ai-chat-window"
+        class="fixed bottom-24 right-6 w-80 lg:w-96 bg-white rounded-3xl shadow-2xl z-50 hidden flex-col transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+        <!-- Header -->
+        <div class="bg-blue-600 text-white px-5 py-4 flex justify-between items-center rounded-t-3xl shadow-md">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-robot text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">VoteWise AI</h3>
+                    <p class="text-xs text-blue-100">Online | Ready to Help</p>
+                </div>
+            </div>
+            <button id="close-chat"
+                class="text-white hover:text-red-300 transition text-3xl leading-none">&times;</button>
+        </div>
+
+        <!-- Chat Body -->
+        <div id="chat-body" class="p-5 h-80 overflow-y-auto flex flex-col gap-4 bg-gray-50"
+            style="scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;">
+            <!-- Initial Bot Message -->
+            <div class="flex gap-3 max-w-[85%]">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-robot text-blue-600 text-sm"></i>
+                </div>
+                <div
+                    class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-gray-700 border border-gray-100">
+                    Hello! I'm your VoteWise AI Assistant 🇮🇳. How can I help you with your e-voting process today?
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 bg-white border-t border-gray-100 rounded-b-3xl flex gap-2 items-center">
+            <input type="text" id="chat-input" placeholder="Ask me anything..."
+                class="flex-1 bg-gray-100 px-4 py-3 border-0 rounded-full text-sm focus:ring-2 focus:ring-blue-500 outline-none transition w-full">
+            <button id="send-btn"
+                class="w-11 h-11 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 hover:scale-105 transition flex-shrink-0">
+                <i class="fa-solid fa-paper-plane text-sm"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0f172a] text-white py-12 text-center">
+        <p class="text-lg">VoteWise © 2026 | MCA Project - Lovely Professional University</p>
+        <!-- <p class="text-sm mt-4 text-gray-400">Made with ❤️ by Ashish Chavan (12504059)</p> -->
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

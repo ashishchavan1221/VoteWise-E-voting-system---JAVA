@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VoteWise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen text-[#0f172a] font-sans">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-3xl font-bold tracking-tighter">Vote<span
+                        class="text-blue-600">Wise</span></a>
+            </div>
+            <div class="flex items-center gap-6">
+                <div
+                    class="hidden sm:flex items-center gap-2 text-sm font-semibold text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                    <i class="fa-solid fa-user-check text-green-500"></i>
+                    <span id="navUserBadge">Voter Active</span>
+                </div>
+                <button onclick="logout()"
+                    class="text-red-500 hover:text-red-700 font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <!-- HEADER SECTION -->
+        <div class="bg-[#0f172a] rounded-3xl p-10 md:p-14 mb-12 text-white shadow-2xl relative overflow-hidden">
+            <!-- decorative circles -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/30 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-500/30 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10">
+                <p
+                    class="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold mb-4 border border-blue-500/30 backdrop-blur-md">
+                    <i class="fa-solid fa-shield-check mr-2"></i>Secure Standard Voting
+                </p>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Welcome back, <span id="voterNameDisplay"
+                        class="text-blue-400">Voter</span>!</h1>
+                <p class="text-lg text-gray-300 max-w-2xl">Please review the candidate manifestos carefully. Your vote
+                    is confidential and can only be cast exactly once.</p>
+            </div>
+        </div>
+
+        <!-- VOTING SECTION -->
+        <div id="votingArea">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4 sm:gap-0">
+                <div>
+                    <h2 class="text-3xl font-bold">Official Candidates <span class="text-blue-600">2026</span></h2>
+                    <p class="text-gray-500 mt-2">Review candidate manifestos to make an informed decision.</p>
+                </div>
+                <div>
+                    <div class="px-6 py-3 bg-gray-100 border border-gray-200 text-gray-400 rounded-xl font-bold shadow-inner w-full block text-center sm:inline-block cursor-not-allowed"
+                        title="Rule: You must vote before viewing results">
+                        <i class="fa-solid fa-lock mr-2"></i> Results Locked
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="candidateList">
+                <!-- Candidates injected via JS -->
+            </div>
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div id="successArea" class="hidden text-center py-20">
+            <div
+                class="w-32 h-32 mx-auto bg-green-100 text-green-500 rounded-full flex items-center justify-center text-6xl mb-8 shadow-xl shadow-green-200/50 animate-bounce">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-4">Vote Cast Successfully!</h2>
+            <p class="text-xl text-gray-500 max-w-md mx-auto mb-10">Thank you for participating in democracy. Your
+                encrypted vote has been securely lodged in the ballot box.</p>
+            <a href="results.html"
+                class="inline-block px-10 py-4 bg-[#0f172a] text-white font-bold rounded-2xl shadow-xl hover:scale-105 transition duration-300">
+                View Live Results
+            </a>
+        </div>
+    </main>
+
+    <!-- CONFIRMATION MODAL -->
+    <div id="confirmModal"
+        class="fixed inset-0 bg-[#0f172a]/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 transform scale-95 transition-transform duration-300"
+            id="modalContent">
+            <div
+                class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Final Confirmation</h3>
+            <p class="text-gray-500 mb-6">Are you sure you want to cast your vote for <strong id="modalCandidateName"
+                    class="text-blue-600"></strong>? This action is permanent and cannot be undone.</p>
+
+            <div class="flex gap-4">
+                <button onclick="closeModal()"
+                    class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition">Cancel</button>
+                <button onclick="submitVote()"
+                    class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-xl font-bold shadow-lg hover:bg-blue-700 transition">Confirm
+                    Vote</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Auth check
+        const currentUser = localStorage.getItem("currentUser");
+        if (!currentUser) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("navUserBadge").innerText = currentUser;
+            document.getElementById("voterNameDisplay").innerText = currentUser;
+        }
+
+        // Check if Already Voted
+        const hasVoted = localStorage.getItem(`voted_${currentUser}`);
+        if (hasVoted) {
+            document.getElementById("votingArea").classList.add("hidden");
+            document.getElementById("successArea").classList.remove("hidden");
+        }
+
+        let selectedCandidateId = null;
+
+        const candidates = [
+            { id: 1, name: "Rahul Sharma", party: "Student Union", manifesto: "Focusing on transparent hostel policies and student welfare.", color: "from-blue-500 to-indigo-600" },
+            { id: 2, name: "Priya Patel", party: "Tech Innovators", manifesto: "Advocating for 24/7 lab access, free campus WiFi, and hackathons.", color: "from-green-400 to-emerald-600" },
+            { id: 3, name: "Amit Singh", party: "Cultural Council", manifesto: "Promoting mega cultural fests, sports events, and arts programs.", color: "from-orange-400 to-red-500" }
+        ];
+
+        function renderCandidates() {
+            const list = document.getElementById("candidateList");
+            list.innerHTML = candidates.map(c => `
+                <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition duration-500 hover:-translate-y-2 flex flex-col h-full group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br ${c.color} flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-md transform group-hover:scale-110 group-hover:rotate-3 transition duration-300">
+                        ${c.name.charAt(0)}
+                    </div>
+                    <div class="inline-block px-3 py-1 bg-gray-50 text-gray-500 text-xs font-bold rounded-full mb-4 self-start border border-gray-200">
+                        ${c.party}
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-3">${c.name}</h3>
+                    <p class="text-gray-500 flex-grow text-sm leading-relaxed mb-8">${c.manifesto}</p>
+                    <button onclick="openModal(${c.id}, '${c.name}')" class="w-full py-4 bg-gray-50 border-2 border-gray-100 text-gray-700 font-bold rounded-2xl hover:bg-[#0f172a] hover:text-white hover:border-[#0f172a] transition duration-300 shadow-sm flex justify-center items-center gap-2 group-hover:bg-[#0f172a] group-hover:text-white group-hover:border-[#0f172a]">
+                        <span>Cast Vote</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        renderCandidates();
+
+        const modal = document.getElementById("confirmModal");
+        const modalContent = document.getElementById("modalContent");
+
+        function openModal(id, name) {
+            selectedCandidateId = id;
+            document.getElementById("modalCandidateName").innerText = name;
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.remove("opacity-0");
+                modalContent.classList.remove("scale-95");
+                modalContent.classList.add("scale-100");
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add("opacity-0");
+            modalContent.classList.remove("scale-100");
+            modalContent.classList.add("scale-95");
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+            selectedCandidateId = null;
+        }
+
+        function submitVote() {
+            if (!selectedCandidateId) return;
+
+            // Logically record vote in localStorage for real-time update in results
+            localStorage.setItem(`voted_${currentUser}`, "true");
+            let results = JSON.parse(localStorage.getItem("mock_results") || "{}");
+            results[selectedCandidateId] = (results[selectedCandidateId] || 0) + 1;
+            localStorage.setItem("mock_results", JSON.stringify(results));
+
+            closeModal();
+            showAlert("✅ Vote Registered Successfully!");
+
+            setTimeout(() => {
+                document.getElementById("votingArea").classList.add("hidden");
+                document.getElementById("successArea").classList.remove("hidden");
+            }, 500);
+        }
+
+        function logout() {
+            localStorage.removeItem("currentUser");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+
+</html>
