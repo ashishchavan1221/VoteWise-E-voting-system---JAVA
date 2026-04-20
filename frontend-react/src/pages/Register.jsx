@@ -123,7 +123,7 @@ function Register() {
                         <form onSubmit={handleRegisterVerify} className="max-w-md mx-auto">
                             <div className="mb-6">
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">Enter 6-Digit OTP</label>
-                                <p className="text-xs text-red-500 mb-2">Check your VS Code terminal for the dummy OTP!</p>
+                                <p className="text-xs text-blue-500 mb-2">Check your email inbox (and spam folder) for the code!</p>
                                 <input type="text" onChange={(e) => setOtp(e.target.value)} placeholder="000000" maxLength="6" className="w-full px-4 py-4 text-center text-2xl tracking-[1em] bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600" required />
                             </div>
                             <button type="submit" disabled={loading} className="w-full bg-green-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-green-600/30 hover:bg-green-700">
