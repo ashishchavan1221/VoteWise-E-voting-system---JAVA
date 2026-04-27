@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../assets/images/vote logo.png';
 
 function Footer() {
   return (
@@ -9,8 +10,8 @@ function Footer() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div className="md:col-span-2">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-full flex items-center justify-center overflow-hidden shadow-lg shadow-blue-500/20 shadow-[0_0_10px_rgba(59,130,246,0.3)]">
-                            <img src="/src/assets/images/images.png" className="w-full h-full object-cover p-1 rounded-full mix-blend-screen" />
+                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-lg border border-white/10">
+                            <img src={logo} className="w-full h-full object-contain p-1" alt="Logo" />
                         </div>
                         <span className="text-2xl font-bold tracking-tight text-white">Vote<span className="text-blue-400">Wise</span></span>
                     </div>

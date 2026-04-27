@@ -1,17 +1,19 @@
 @echo off
 echo ==============================================
-echo      Starting VoteWise Servers...
+echo      Building and Starting VoteWise E-Voting
 echo ==============================================
 
-echo Starting Pure Java Backend (Port 8080)...
-start "VoteWise Backend (Java)" cmd /k "cd backend && title VoteWise Backend && mvn clean compile exec:java -Dexec.mainClass=""com.votewise.Main"""
+echo [1/2] Building React Frontend...
+cd frontend-react
+call npm install
+call npm run build
+cd ..
 
-echo Starting React Frontend (Port 5173)...
-start "VoteWise Frontend (React)" cmd /k "cd frontend-react && title VoteWise Frontend && npm run dev"
+echo [2/2] Starting Pure Java Backend...
+echo - Frontend is integrated and served directly by the Java backend!
+echo - Access your website at: http://localhost:8090
+cd backend
+title VoteWise Server
+powershell -ExecutionPolicy Bypass -File start-server.ps1
 
-echo ==============================================
-echo Both servers are launching in separate windows!
-echo - Keep those windows open to keep the servers running.
-echo - Close the specific windows when you want to stop them.
-echo ==============================================
 pause

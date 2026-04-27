@@ -73,33 +73,51 @@ function Dashboard() {
 
     if (hasVoted) {
         return (
-            <div className="min-h-[80vh] flex items-center justify-center p-6 bg-gray-50">
-                <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 max-w-lg w-full text-center">
-                    <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i className="fa-solid fa-check text-5xl text-green-500"></i>
+            <div className="min-h-screen flex items-center justify-center p-4 md:p-10 bg-gradient-to-br from-[#121212] to-[#050505]">
+                <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl border border-white/10 max-w-3xl w-full text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-600/20 rounded-full blur-[100px] animate-pulse"></div>
+                    <div className="absolute bottom-0 left-0 w-72 h-72 bg-fuchsia-600/20 rounded-full blur-[100px] animate-pulse delay-700"></div>
+
+                    <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-tr from-fuchsia-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-4xl md:text-5xl shadow-[0_0_30px_rgba(217,70,239,0.3)] mb-8 animate-bounce">
+                            <i className="fa-solid fa-check"></i>
+                        </div>
+                        
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                            Thank You <br className="sm:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-400">For Voting!</span>
+                        </h2>
+                        
+                        <div className="bg-white/5 p-5 md:p-8 rounded-3xl mb-10 border border-white/10 shadow-inner max-w-xl">
+                            <h3 className="text-lg md:text-xl font-bold text-fuchsia-300 mb-3 uppercase tracking-widest">Election Integrity Secured</h3>
+                            <p className="text-gray-300 text-sm md:text-lg leading-relaxed font-medium">
+                                Your voice has been cryptographically secured in our database. By participating today, you've strengthened our democracy. Every vote is a stepping stone to a better future.
+                            </p>
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto">
+                            <button onClick={() => navigate('/results')} className="flex-1 bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-xl hover:shadow-indigo-500/20 hover:scale-[1.02] transition active:scale-95">
+                                <i className="fa-solid fa-chart-pie mr-2"></i> Live Results
+                            </button>
+                            <button onClick={() => { localStorage.clear(); navigate('/'); }} className="flex-1 bg-zinc-900 border border-zinc-800 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-zinc-800 transition active:scale-95">
+                                <i className="fa-solid fa-right-from-bracket mr-2"></i> Home
+                            </button>
+                        </div>
                     </div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Vote Recorded</h2>
-                    <p className="text-gray-600 mb-8 leading-relaxed">Thank you for participating! Your vote has been securely anonymized and legally recorded.</p>
-                    <button onClick={() => navigate('/results')} className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition">
-                        View Live Results
-                    </button>
-                    <button onClick={() => { localStorage.clear(); navigate('/'); }} className="block mx-auto mt-4 text-gray-500 hover:text-gray-800 underline text-sm">
-                        Secure Logout
-                    </button>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="bg-gray-50 min-h-screen">
-            <header className="bg-[#0f172a] text-white pt-24 pb-16 px-6 relative overflow-hidden">
+        <div className="bg-fuchsia-50 min-h-screen">
+            <header className="bg-[#310c3b] text-white pt-24 pb-16 px-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen blur-3xl opacity-30 animate-blob"></div>
                 <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-8">
                     <div className="flex-1">
-                        <p className="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold mb-4 border border-blue-500/30 backdrop-blur-md">
+                        <p className="inline-block px-4 py-1.5 bg-fuchsia-500/20 text-fuchsia-300 rounded-full text-sm font-semibold mb-4 border border-fuchsia-500/30 backdrop-blur-md shadow-sm">
                             <i className="fa-solid fa-shield-check mr-2"></i>Secure Standard Voting
                         </p>
-                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Welcome back, <span className="text-blue-400">{currentUser}</span>!</h1>
+                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Welcome back, <span className="text-pink-400">{currentUser}</span>!</h1>
                         <p className="text-lg text-gray-300 max-w-2xl">Please review the 10 candidate manifestos carefully. Your vote is confidential and can only be cast exactly once.</p>
                     </div>
                 </div>
@@ -113,14 +131,12 @@ function Dashboard() {
                                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center shadow-inner text-4xl">
                                     {candidate.symbol}
                                 </div>
-                                <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-[10px] font-bold uppercase tracking-wider">{candidate.party_or_group}</span>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-1">{candidate.name}</h3>
-                            <p className="text-blue-600 font-semibold text-sm mb-4">{candidate.manifesto}</p>
 
-                            <hr className="border-gray-100 my-4 mt-auto" />
+                            <hr className="border-fuchsia-100 my-4 mt-auto" />
 
-                            <button onClick={() => setSelectedCandidate(candidate)} className="w-full py-3 bg-gray-50 border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:shadow-lg transition flex items-center justify-center gap-2">
+                            <button onClick={() => setSelectedCandidate(candidate)} className="w-full py-3 bg-fuchsia-50 border border-fuchsia-200 text-fuchsia-800 font-bold rounded-xl hover:bg-pink-600 hover:text-white hover:border-pink-600 hover:shadow-lg hover:shadow-pink-500/30 transition flex items-center justify-center gap-2">
                                 <i className="fa-solid fa-check-to-slot"></i> Vote
                             </button>
                         </div>
@@ -130,18 +146,18 @@ function Dashboard() {
 
             {selectedCandidate && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-[#0f172a]/80 backdrop-blur-sm" onClick={() => setSelectedCandidate(null)}></div>
-                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md relative z-10 overflow-hidden transform transition-all p-8 scale-100">
-                        <div className="w-20 h-20 mx-auto bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 text-4xl">
+                    <div className="absolute inset-0 bg-[#310c3b]/80 backdrop-blur-md" onClick={() => setSelectedCandidate(null)}></div>
+                    <div className="bg-white rounded-3xl shadow-2xl border border-fuchsia-100 w-full max-w-md relative z-10 overflow-hidden transform transition-all p-8 scale-100">
+                        <div className="w-20 h-20 mx-auto bg-fuchsia-50 text-fuchsia-600 rounded-full flex items-center justify-center mb-6 text-4xl shadow-inner border border-fuchsia-100">
                             {selectedCandidate.symbol}
                         </div>
                         <h3 className="text-2xl font-bold text-center text-gray-900 mb-2">Confirm Your Vote</h3>
                         <p className="text-center text-gray-600 mb-8 leading-relaxed">
-                            You are placing a legal vote for <strong className="text-gray-900">{selectedCandidate.name}</strong>. This is permanently encrypted.
+                            You are placing a legal vote for <strong className="text-fuchsia-900 text-lg">{selectedCandidate.name}</strong>. This is permanently encrypted.
                         </p>
                         <div className="flex gap-4">
-                            <button onClick={() => setSelectedCandidate(null)} className="flex-1 py-4 bg-gray-100 text-gray-700 font-bold rounded-2xl hover:bg-gray-200">Cancel</button>
-                            <button onClick={handleVote} className="flex-1 py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-lg hover:bg-blue-700">Submit Vote</button>
+                            <button onClick={() => setSelectedCandidate(null)} className="flex-1 py-4 bg-gray-100 text-gray-700 font-bold rounded-2xl hover:bg-gray-200 transition">Cancel</button>
+                            <button onClick={handleVote} className="flex-1 py-4 bg-pink-600 text-white font-bold rounded-2xl shadow-lg shadow-pink-500/30 hover:bg-pink-700 transition">Submit Vote</button>
                         </div>
                     </div>
                 </div>

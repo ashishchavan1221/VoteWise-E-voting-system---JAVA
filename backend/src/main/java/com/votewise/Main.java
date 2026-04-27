@@ -19,6 +19,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        // Initialize the interactive Swing Monitor UI to track backend metrics (Syllabus Requirement)
+        try {
+            SyllabusMonitor.start();
+        } catch (Exception e) {
+            System.err.println("Running in headless mode, skipping Swing Monitor.");
+        }
+
         DatabaseHelper.connect();
         String envPort = System.getenv("PORT");
         int port = (envPort != null && !envPort.isEmpty()) ? Integer.parseInt(envPort) : 8080;
@@ -26,7 +33,6 @@ public class Main {
 
         // Security / Auth Routes
         server.createContext("/api/auth/register-init", new RegisterInitHandler());
-        server.createContext("/api/auth/register-verify", new RegisterVerifyHandler());
         server.createContext("/api/auth/captcha", new CaptchaHandler());
         server.createContext("/api/auth/login", new LoginHandler());
         
@@ -129,7 +135,7 @@ public class Main {
         return new String(is.readAllBytes(), StandardCharsets.UTF_8);
     }
 
-    // 1. Initialize Registration (Sends OTP)
+    // 1. Initialize Registration (Direct Registration, OTP Removed)
     static class RegisterInitHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -140,71 +146,33 @@ public class Main {
                 JSONObject json = new JSONObject(body);
 
                 String voterId = json.optString("voterId");
+                String aadharCard = json.optString("aadharCard");
                 
                 Document existing = DatabaseHelper.getUsersCollection().find(new Document("voterId", voterId)).first();
                 if (existing != null) {
                     sendResponse(exchange, 400, "{\"error\": \"Voter ID already registered!\"}");
                     return;
                 }
-
-                String otp = SecurityUtil.generateOTP();
                 
-                // SEND REAL EMAIL
-                String email = json.optString("email");
-                System.out.println("\n--- Attempting to send OTP Email to: " + email + " ---");
-                SecurityUtil.sendEmail(email, "VoteWise E-Voting Registration OTP", "Your VoteWise Registration OTP is: " + otp + "\n\nPlease do not share this code with anyone.");
-
-                Document tempOtpDoc = new Document("voterId", voterId)
-                        .append("otp", otp)
-                        .append("name", json.optString("name"))
-                        .append("password", json.optString("password"))
-                        .append("college", json.optString("college"))
-                        .append("email", email)
-                        .append("age", json.optInt("age"));
-                
-                // Wipe any old attempts and insert new
-                DatabaseHelper.getOtpCollection().deleteMany(new Document("voterId", voterId));
-                DatabaseHelper.getOtpCollection().insertOne(tempOtpDoc);
-
-                sendResponse(exchange, 200, "{\"status\": \"pending\", \"message\": \"OTP Sent to Email and Phone\"}");
-            } catch (Exception e) {
-                e.printStackTrace();
-                sendResponse(exchange, 500, "{\"error\": \"Internal Server Error\"}");
-            }
-        }
-    }
-
-    // 2. Verify Registration (Validates OTP & Saves User with Hashed Password)
-    static class RegisterVerifyHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange exchange) throws IOException {
-            if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) { sendResponse(exchange, 204, ""); return; }
-            if (!"POST".equals(exchange.getRequestMethod())) { sendResponse(exchange, 405, "{\"error\": \"Method not allowed\"}"); return; }
-            try {
-                JSONObject json = new JSONObject(readRequestBody(exchange));
-                String voterId = json.optString("voterId");
-                String enteredOtp = json.optString("otp");
-
-                Document otpRecord = DatabaseHelper.getOtpCollection().find(new Document("voterId", voterId)).first();
-                
-                if (otpRecord == null || !otpRecord.getString("otp").equals(enteredOtp)) {
-                    sendResponse(exchange, 400, "{\"error\": \"Invalid or Expired OTP!\"}");
+                Document existingAadhar = DatabaseHelper.getUsersCollection().find(new Document("aadharCard", aadharCard)).first();
+                if (existingAadhar != null) {
+                    sendResponse(exchange, 400, "{\"error\": \"Aadhar Card already registered!\"}");
                     return;
                 }
 
-                // Hash password & save user
-                String hashedPassword = SecurityUtil.hashPassword(otpRecord.getString("password"));
+                // Hash password & save user directly
+                String hashedPassword = SecurityUtil.hashPassword(json.optString("password"));
                 
                 Document newUser = new Document("voterId", voterId)
-                        .append("name", otpRecord.getString("name"))
+                        .append("aadharCard", aadharCard)
+                        .append("name", json.optString("name"))
                         .append("password", hashedPassword)
-                        .append("college", otpRecord.getString("college"))
-                        .append("email", otpRecord.getString("email"))
-                        .append("age", otpRecord.getInteger("age"))
+                        .append("college", json.optString("college"))
+                        .append("email", json.optString("email"))
+                        .append("age", json.optInt("age"))
                         .append("hasVoted", false);
                 
                 DatabaseHelper.getUsersCollection().insertOne(newUser);
-                DatabaseHelper.getOtpCollection().deleteOne(new Document("voterId", voterId)); // Clean up
 
                 sendResponse(exchange, 201, "{\"status\": \"success\", \"message\": \"Registered Successfully\"}");
             } catch (Exception e) {
@@ -245,6 +213,7 @@ public class Main {
             try {
                 JSONObject json = new JSONObject(readRequestBody(exchange));
                 String voterId = json.optString("voterId");
+                String aadharCard = json.optString("aadharCard");
                 String password = json.optString("password");
                 String captchaId = json.optString("captchaId");
                 String captchaAnswer = json.optString("captchaAnswer");
@@ -257,10 +226,12 @@ public class Main {
                 }
                 DatabaseHelper.getCaptchaCollection().deleteOne(new Document("captchaId", captchaId)); // Destroy after use
 
-                // Verify Password
+                // Verify Password and BOTH IDs checking condition
                 String hashedPassword = SecurityUtil.hashPassword(password);
                 Document user = DatabaseHelper.getUsersCollection().find(
-                        new Document("voterId", voterId).append("password", hashedPassword)
+                        new Document("voterId", voterId)
+                        .append("aadharCard", aadharCard)
+                        .append("password", hashedPassword)
                 ).first();
 
                 if (user != null) {

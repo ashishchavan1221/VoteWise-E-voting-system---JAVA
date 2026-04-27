@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import heroCollage from '../assets/images/image.png';
+import voterIcon from '../assets/images/vote logo.png';
 
 function Home() {
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -33,55 +35,96 @@ function Home() {
             <section className="hero-bg relative">
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
                     <div className="space-y-8">
-                        <h1 className="text-6xl md:text-7xl font-extrabold text-[#0f172a] leading-tight tracking-tighter drop-shadow-sm">
-                            Secure Online<br/>E-Voting System
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#310c3b] leading-tight tracking-tighter drop-shadow-sm text-center md:text-left">
+                            Secure Online<br className="hidden md:block" /> E-Voting System
                         </h1>
-                        <p className="text-3xl font-bold text-blue-600 drop-shadow-sm">Your Vote. India’s Future — Now Online 🇮🇳</p>
+                        <p className="text-xl md:text-2xl lg:text-3xl font-bold text-pink-600 drop-shadow-sm text-center md:text-left">Your Vote. India’s Future — Now Online 🇮🇳</p>
 
-                        <div className="flex gap-6">
-                            <Link to="/login" className="px-10 py-5 bg-white text-[#0f172a] rounded-3xl font-bold text-xl flex items-center gap-3 shadow-xl hover:scale-105 transition">
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center md:justify-start">
+                            <Link to="/login" className="px-8 md:px-10 py-4 md:py-5 bg-pink-600 text-white rounded-2xl md:rounded-3xl font-bold text-lg md:text-xl flex items-center justify-center gap-3 shadow-xl hover:scale-105 transition">
                                 Login to Vote
                             </Link>
-                            <Link to="/register" className="px-10 py-5 border-2 border-white/80 rounded-3xl font-bold text-xl flex items-center gap-3 hover:bg-white hover:text-[#0f172a] transition">
+                            <Link to="/register" className="px-8 md:px-10 py-4 md:py-5 border-2 border-pink-200 text-pink-700 bg-white rounded-2xl md:rounded-3xl font-bold text-lg md:text-xl flex items-center justify-center gap-3 hover:bg-pink-50 transition text-center">
                                 Register Now
                             </Link>
                         </div>
 
                         {/* Trust badges */}
-                        <div className="flex items-center gap-8 pt-6">
-                            <div className="flex items-center gap-2"><i className="fa-solid fa-shield-halved text-3xl"></i> <span className="font-medium">100% Secure</span></div>
-                            <div className="flex items-center gap-2"><i className="fa-solid fa-users text-3xl"></i> <span className="font-medium">New for College Students</span></div>
-                            <div className="flex items-center gap-2"><i className="fa-solid fa-users-line text-3xl"></i> <span className="font-medium">For All Indian Voters</span></div>
+                        <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 md:gap-8 pt-6">
+                            <div className="flex items-center gap-2"><i className="fa-solid fa-shield-halved text-2xl md:text-3xl text-blue-600"></i> <span className="font-semibold text-sm md:text-base">100% Secure</span></div>
+                            <div className="flex items-center gap-2"><i className="fa-solid fa-users text-2xl md:text-3xl text-indigo-600"></i> <span className="font-semibold text-sm md:text-base">New for College</span></div>
+                            <div className="flex items-center gap-2"><i className="fa-solid fa-users-line text-2xl md:text-3xl text-emerald-600"></i> <span className="font-semibold text-sm md:text-base">For All Voters</span></div>
                         </div>
                     </div>
 
-                    <div className="relative flex justify-center">
-                        <img src="/src/assets/images/icon 1.png" className="w-full max-w-4xl rounded-3xl shadow-lg" alt="VoteWise Ballot Box" />
+                    <div className="relative flex justify-center w-full mt-10 md:mt-16">
+                        <div className="relative z-20 w-full max-w-2xl transform hover:scale-105 transition duration-700 animate-float">
+                            <div className="relative p-2 md:p-4 bg-white/20 backdrop-blur-md rounded-[2.5rem] md:rounded-[4rem] border-2 border-white/40 shadow-2xl overflow-hidden group">
+                                <img
+                                    src={heroCollage}
+                                    alt="Artistic Voting Collage"
+                                    className="w-full h-auto rounded-[2rem] md:rounded-[3.5rem] shadow-inner group-hover:scale-110 transition duration-700"
+                                />
+
+                                {/* Artistic Floating Overlays to match the collage look */}
+                                <div className="absolute top-10 left-10 transform -rotate-12 bg-pink-600 text-white px-5 py-2 rounded-xl font-black shadow-2xl border border-white/20 animate-pulse">
+                                    VOTE!
+                                </div>
+                                <div className="absolute bottom-20 left-12 transform rotate-3 bg-[#310c3b] text-white px-6 py-2 rounded-xl font-bold shadow-2xl border border-fuchsia-500/30">
+                                    Your Voice Matters
+                                </div>
+                                <div className="absolute top-20 right-10 transform rotate-45 bg-indigo-600 text-white p-3 rounded-2xl shadow-2xl animate-bounce-slow">
+                                    <i className="fa-solid fa-check text-2xl"></i>
+                                </div>
+                            </div>
+
+                            {/* Main Floating Detail Badge */}
+                            <div className="absolute -bottom-6 -left-4 md:-left-8 bg-white/95 backdrop-blur-2xl p-4 md:p-5 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_15px_40px_rgba(0,0,0,0.2)] border border-white flex items-center gap-4 md:gap-5 animate-float" style={{ animationDelay: '-2s' }}>
+                                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-fuchsia-600 to-indigo-600 text-white rounded-[1.2rem] md:rounded-[1.5rem] flex items-center justify-center text-xl md:text-2xl shadow-lg shadow-fuchsia-500/20">
+                                    <i className="fa-solid fa-stamp"></i>
+                                </div>
+                                <div>
+                                    <p className="text-[10px] md:text-[11px] uppercase font-black text-fuchsia-600 tracking-[0.2em] leading-none mb-1.5">Verified Selection</p>
+                                    <p className="text-gray-900 font-black text-lg md:text-xl leading-none tracking-tight">Vote Wise!</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {/* Decorative floating elements */}
+                    <div className="absolute top-10 -left-10 md:-left-20 w-32 h-32 bg-pink-500/40 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                    <div className="absolute bottom-10 -right-10 w-32 h-32 bg-blue-500/40 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
                 </div>
             </section>
 
             {/* WHY VOTING IS IMPORTANT */}
             <section className="py-24 bg-white relative overflow-hidden" data-aos="fade-up">
-                <div className="absolute -right-20 top-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-                <div className="absolute -left-20 bottom-20 w-72 h-72 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+                <div className="absolute -right-20 top-20 w-72 h-72 bg-fuchsia-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+                <div className="absolute -left-20 bottom-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
 
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div className="relative group rounded-3xl overflow-hidden shadow-2xl">
-                            <div className="absolute inset-0 bg-blue-600/20 group-hover:bg-transparent transition duration-500 z-10"></div>
-                            <img src="/src/assets/images/votewise_hero.png" alt="Importance of Voting" className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out" />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0f172a] to-transparent pt-20 pb-8 px-8 z-20">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md text-white rounded-full font-semibold text-xs mb-3">VoteWise</div>
-                                <h3 className="text-white text-3xl font-bold">Your Voice Matters</h3>
+                        <div className="relative group rounded-3xl overflow-hidden shadow-2xl h-[400px] md:h-[500px] bg-gradient-to-br from-indigo-900 via-[#1b0b2e] to-fuchsia-900 border border-fuchsia-800/50 flex flex-col items-center justify-center">
+                            {/* Abstract Digital Identity Visual */}
+                            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtbDItMi0ybC0yLTIuNXYxMS41aC0xNXYtMTEuNWwtMi0yLjVsLTItMmwtMiAyVjM0SDZ2MTVoMTVWMzhsMi0yLjVsMi0ybDIgMi41djExaDE1di0xMS41bDItMi41bDItMmw0IDJWNDloMTVWNDloLTE1VjM4bDItMi41bDItMmwyIDIuNVYzNEgzNnoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1b0b2e] via-transparent to-transparent z-10"></div>
+
+                            <div className="relative z-20 flex flex-col items-center justify-center p-8 text-center group-hover:scale-105 transition duration-700 pointer-events-none">
+                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border border-fuchsia-500/50 flex items-center justify-center bg-white/5 backdrop-blur-sm shadow-[0_0_50px_rgba(217,70,239,0.2)] mb-8 relative">
+                                    <div className="absolute inset-2 border-2 border-dashed border-indigo-400/50 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                                    <i className="fa-solid fa-fingerprint text-6xl md:text-7xl text-fuchsia-400 drop-shadow-[0_0_15px_rgba(217,70,239,0.5)]"></i>
+                                </div>
+                                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-fuchsia-500/20 border border-fuchsia-500/40 text-fuchsia-100 rounded-full font-bold text-xs uppercase tracking-widest mb-4">
+                                    <i className="fa-solid fa-lock text-[10px]"></i> Cryptographic Verification
+                                </div>
+                                <h3 className="text-white text-2xl md:text-3xl font-black tracking-tight">Your Identity, Secured.</h3>
                             </div>
                         </div>
 
                         <div className="space-y-8">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full font-semibold text-sm">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-50 text-pink-600 rounded-full font-semibold text-sm">
                                 <i className="fa-solid fa-bolt"></i><span>Empowering Democracy</span>
                             </div>
-                            <h2 className="text-5xl font-extrabold text-[#0f172a] leading-tight tracking-tight">Why We Vote & <br/>Why It Is Important</h2>
+                            <h2 className="text-5xl font-extrabold text-[#310c3b] leading-tight tracking-tight">Why We Vote & <br />Why It Is Important</h2>
                             <p className="text-lg text-gray-600 leading-relaxed">Voting is not just a constitutional right; it is our primary instrument to shape the future of our nation. By voting, we elect leaders who reflect our values, solve our community's challenges, and protect our freedoms.</p>
 
                             <ul className="space-y-6 mt-8">
@@ -110,7 +153,7 @@ function Home() {
             </section>
 
             {/* FEATURES */}
-            <section className="py-24 bg-[#0f172a] relative border-t border-gray-800" data-aos="fade-up">
+            <section className="py-24 bg-[#310c3b] relative border-t border-fuchsia-900" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="text-center max-w-2xl mx-auto mb-20">
                         <h2 className="text-5xl font-extrabold text-white tracking-tight mb-6">Powerful Features</h2>
@@ -134,21 +177,21 @@ function Home() {
             <section id="how-it-works" className="py-24 bg-gray-50 relative" data-aos="fade-up">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center max-w-2xl mx-auto mb-20">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full font-semibold text-sm mb-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 text-pink-700 rounded-full font-semibold text-sm mb-4">
                             <i className="fa-solid fa-shoe-prints"></i><span>Simple Steps</span>
                         </div>
-                        <h2 className="text-5xl font-extrabold text-[#0f172a] tracking-tight">How It Works</h2>
+                        <h2 className="text-5xl font-extrabold text-[#310c3b] tracking-tight">How It Works</h2>
                     </div>
                     <div className="grid md:grid-cols-4 gap-8 relative items-start">
                         <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-200"></div>
-                        
+
                         {["Register", "Login Securely", "Cast Your Vote", "See Live Results"].map((step, i) => (
-                           <div key={i} className="text-center relative z-10 group">
+                            <div key={i} className="text-center relative z-10 group">
                                 <div className="w-20 h-20 mx-auto bg-white border-4 border-blue-600 text-blue-600 shadow-xl rounded-full flex items-center justify-center text-3xl font-bold mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition">
-                                    {i+1}
+                                    {i + 1}
                                 </div>
                                 <h4 className="font-bold text-2xl text-[#0f172a] mb-3">{step}</h4>
-                           </div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -158,20 +201,20 @@ function Home() {
             <section id="faq" className="py-24 bg-white border-t border-gray-100" data-aos="fade-up">
                 <div className="max-w-4xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full font-semibold text-sm mb-4">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-fuchsia-50 text-fuchsia-600 rounded-full font-semibold text-sm mb-4">
                             <i className="fa-solid fa-circle-question"></i><span>Got Questions?</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Frequently Asked Questions</h2>
+                        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#310c3b]">Frequently Asked Questions</h2>
                     </div>
                     <div className="space-y-4 max-w-3xl mx-auto text-left">
                         {faqs.map((faq, index) => (
-                            <div 
-                                key={index} 
+                            <div
+                                key={index}
                                 onClick={() => toggleFaq(index)}
                                 className={`border border-gray-200 rounded-2xl p-4 sm:p-6 transition-all duration-300 cursor-pointer ${openFaqIndex === index ? 'bg-white shadow-xl shadow-blue-900/5 border-blue-200 scale-[1.02]' : 'bg-gray-50/50 hover:bg-white hover:shadow-md'}`}
                             >
                                 <h3 className="text-base sm:text-lg font-bold text-gray-900 group flex justify-between items-center select-none gap-4">
-                                    {faq.q} 
+                                    {faq.q}
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 ${openFaqIndex === index ? 'bg-blue-600 text-white rotate-[135deg] shadow-md' : 'bg-blue-50 text-blue-600 group-hover:bg-blue-100'}`}>
                                         <i className="fa-solid fa-plus text-sm"></i>
                                     </div>
