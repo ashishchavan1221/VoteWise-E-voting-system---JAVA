@@ -10,6 +10,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <exec.mainClass>com.votewise.Main</exec.mainClass>
     </properties>
 
     <dependencies>
@@ -34,4 +35,18 @@
             <version>1.6.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Exec Maven Plugin to run the application -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

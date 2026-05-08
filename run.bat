@@ -1,19 +1,18 @@
 @echo off
 echo ==============================================
-echo      Building and Starting VoteWise E-Voting
+echo      Starting VoteWise System (Java + GUI)
 echo ==============================================
+echo.
+echo [1/2] Starting Backend Server...
+start "VoteWise Server" cmd /c "run-server.bat"
 
-echo [1/2] Building React Frontend...
-cd frontend-react
-call npm install
-call npm run build
-cd ..
+echo Waiting for server to initialize...
+timeout /t 3 /nobreak > nul
 
-echo [2/2] Starting Pure Java Backend...
-echo - Frontend is integrated and served directly by the Java backend!
-echo - Access your website at: http://localhost:8090
-cd backend
-title VoteWise Server
-powershell -ExecutionPolicy Bypass -File start-server.ps1
+echo [2/2] Starting Swing GUI Client...
+start "VoteWise GUI" cmd /c "run-gui.bat"
 
+echo.
+echo Both systems have been launched in separate windows!
+echo You can safely close this launcher window.
 pause

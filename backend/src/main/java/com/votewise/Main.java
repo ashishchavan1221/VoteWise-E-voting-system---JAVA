@@ -28,7 +28,7 @@ public class Main {
 
         DatabaseHelper.connect();
         String envPort = System.getenv("PORT");
-        int port = (envPort != null && !envPort.isEmpty()) ? Integer.parseInt(envPort) : 8080;
+        int port = (envPort != null && !envPort.isEmpty()) ? Integer.parseInt(envPort) : 8888;
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
         // Security / Auth Routes
@@ -230,7 +230,6 @@ public class Main {
                 String hashedPassword = SecurityUtil.hashPassword(password);
                 Document user = DatabaseHelper.getUsersCollection().find(
                         new Document("voterId", voterId)
-                        .append("aadharCard", aadharCard)
                         .append("password", hashedPassword)
                 ).first();
 
